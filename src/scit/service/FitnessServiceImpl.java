@@ -7,9 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+<<<<<<< HEAD
  * projectName     :intelli-worksapce
  * fileName        :FitnessServiceImpl
  * author          :yuuna
+=======
+ * projectName     :Fitness_v05
+ * fileName        :FitnessServiceImpl
+ * author          :yuuna 05/03
+>>>>>>> 109d2cf (220503)
  * since           :2022/04/28
  */
 public class FitnessServiceImpl implements FitnessService {
@@ -28,7 +34,10 @@ public class FitnessServiceImpl implements FitnessService {
 
     @Override
     public FitnessVO findById(String usrId) {
+<<<<<<< HEAD
         FitnessVO fitness = null;
+=======
+>>>>>>> 109d2cf (220503)
 
         int num = getListPosition(usrId);
         if(num == -1)
@@ -36,9 +45,13 @@ public class FitnessServiceImpl implements FitnessService {
             return null;
         }
 
+<<<<<<< HEAD
         fitness = list.get(num);
 
         return fitness;
+=======
+        return list.get(num);
+>>>>>>> 109d2cf (220503)
     }
 
     @Override
@@ -50,6 +63,7 @@ public class FitnessServiceImpl implements FitnessService {
 
     @Override
     public int update(FitnessVO vo) {
+<<<<<<< HEAD
 
         for(int i = 0; i < list.size(); i++)
         {
@@ -58,6 +72,21 @@ public class FitnessServiceImpl implements FitnessService {
 
                 return 1;
             }
+=======
+//        for(int i = 0; i < list.size(); i++)
+//        {
+//            if(vo.getUsrId().equals(list.get(i).getUsrId()))
+//            {
+//                list.set(i,vo);
+//                return 1;
+//            }
+//        }
+        int num = getListPosition(vo.getUsrId());
+
+        if(num != -1) {
+            list.set(num, vo);
+            return 1;
+>>>>>>> 109d2cf (220503)
         }
 
         return 0;
@@ -65,6 +94,7 @@ public class FitnessServiceImpl implements FitnessService {
 
     @Override
     public int delete(String id) {
+<<<<<<< HEAD
         int num = getListPosition(id);
 
         if(num != -1)
@@ -72,22 +102,56 @@ public class FitnessServiceImpl implements FitnessService {
             list.remove(num);
             return 1;
         }
+=======
+//        int num = getListPosition(id);
+//
+//        if(num != -1) {
+//            list.remove(num);
+//            return 1;
+//        }
+
+        /* removeIf 사용 : return boolean */
+        boolean res = list.removeIf(n -> n.getUsrId().equals(id));
+//            if(n.getUsrId().equals(id)) { return true; }
+//            return false;
+//        });
+
+        if(res) { return 1; }
+
+>>>>>>> 109d2cf (220503)
 
         return 0;
     }
 
+<<<<<<< HEAD
     public int getListPosition(String id) {
+=======
+    /**
+     * 리스트의 위치값 찾기 :
+     * 수정과 삭제에 이용
+     * @param usrId usrId from UI
+     * @return position, default -1
+     */
+    private int getListPosition(String usrId) {
+>>>>>>> 109d2cf (220503)
         int no = -1;
 
         for(int i = 0; i < list.size(); i++)
         {
+<<<<<<< HEAD
             if(id.equals(list.get(i).getUsrId()))
+=======
+            if(usrId.equals(list.get(i).getUsrId()))
+>>>>>>> 109d2cf (220503)
             {
                 return i;
             }
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 109d2cf (220503)
         return no;
     }
 

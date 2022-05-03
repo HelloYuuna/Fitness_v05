@@ -9,9 +9,15 @@ import java.util.Scanner;
 import static java.lang.System.*;
 
 /**
+<<<<<<< HEAD
  * projectName     :Fitness_v04
  * fileName        :FitnessUI
  * author          :yuuna
+=======
+ * projectName     :Fitness_v05
+ * fileName        :FitnessUI
+ * author          :yuuna 05/03
+>>>>>>> 109d2cf (220503)
  * since           :2022/04/27
  */
 public class FitnessUI {
@@ -184,6 +190,10 @@ public class FitnessUI {
         if(fitness == null)
         {
             out.println("존재하지 않는 회원이야!");
+<<<<<<< HEAD
+=======
+            return;
+>>>>>>> 109d2cf (220503)
         }
 
         out.println("\n" + fitness);
@@ -224,7 +234,11 @@ public class FitnessUI {
         if(fitness == null)
         {
             out.println("존재하지 않는 회원이야!");
+<<<<<<< HEAD
             return;
+=======
+            return;                                     //TODO Return "Null"
+>>>>>>> 109d2cf (220503)
         }
 
         out.println("이 회원을 수정할꺼야!");

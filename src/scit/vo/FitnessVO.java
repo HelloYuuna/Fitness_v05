@@ -4,9 +4,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
+<<<<<<< HEAD
  * projectName     :Fitness_v04
  * fileName        :FitnessVO
  * author          :yuuna
+=======
+ * projectName     :Fitness_v05
+ * fileName        :FitnessVO
+ * author          :yuuna 05/03
+>>>>>>> 109d2cf (220503)
  * since           :2022/04/27
  */
 public class FitnessVO implements Serializable, Comparable<FitnessVO> {
