@@ -3,6 +3,7 @@ package scit.ui;
 import scit.service.FitnessServiceImpl;
 import scit.vo.FitnessVO;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,7 +65,6 @@ public class FitnessUI {
         out.print("\t 선택> ");
     }
 
-
     /**
      *  회원가입
      */
@@ -81,14 +81,12 @@ public class FitnessUI {
             out.print("회원 아아디: ");
             usrId = sc.next();
 
-
             /* 중복 usrId CHECK */
             FitnessVO fitness = service.findById(usrId);
 
             if(fitness != null)
             {
                 out.println("이미 존재하는 아이디야! 다시 입력해줘!");
-//                continue;											//같은 아이디있으면 반복문으로 돌아감
 
             } else {
                 out.print("회원 이름: ");
@@ -103,12 +101,9 @@ public class FitnessUI {
                 fitness = new FitnessVO(usrId, usrName, height, weight);
                 service.register(fitness);
                 out.println("\t\t[ 회원가입 완료! ]\n");
-
                 return;
             }
         }
-
-
 
     }
 
@@ -123,15 +118,10 @@ public class FitnessUI {
             return;
         }
 
-        out.println("\n\t[ 전체 회원 리스트 ]");
-        for(FitnessVO tmp : list)
-        {
-            out.println(tmp);
-        }
-
+        Collections.sort(list);
+        list.forEach(out::println);
         out.println();
     }
-
 
     /**
      * 특정 회원 검색
@@ -141,8 +131,7 @@ public class FitnessUI {
 
         /* 아무도 없다면? */
         List<FitnessVO> list = service.findAll();
-        if(list == null)
-        {
+        if(list.isEmpty()) {
             out.println("우선 가입부터 하자!");
             return;
         }
@@ -152,8 +141,7 @@ public class FitnessUI {
             usrId = sc.next();
 
             FitnessVO fitness = service.findById(usrId);
-            if(fitness == null)
-            {
+            if(fitness == null) {
                 out.println("존재하지 않는 회원이야!");
                 continue;
             }
@@ -171,8 +159,7 @@ public class FitnessUI {
 
         /* 아무도 없다면? */
         List<FitnessVO> list = service.findAll();
-        if(list.isEmpty())
-        {
+        if(list.isEmpty()) {
             out.println("우선 가입부터 하자!");
             return;
         }
@@ -181,25 +168,31 @@ public class FitnessUI {
         usrId = sc.next();
 
         FitnessVO fitness = service.findById(usrId);
-        if(fitness == null)
-        {
+        if (fitness == null) {
             out.println("존재하지 않는 회원이야!");
             return;
         }
 
-        out.println("\n" + fitness);
-        out.print("이 회원 정말 탈퇴해?(y/n) >");
-        String answer = sc.next();
+        while(true) {
+            out.println("\n" + fitness);
+            out.print("이 회원 정말 탈퇴해?(y/n) >");
+            String answer = sc.next();
 
-        if(!answer.equals("y")){
-            out.println("탈퇴 취소할께!");
-            return;
-        }
+            if (answer.equals("n") || answer.equals("N")) {
+                out.println("탈퇴 취소할께!");
+                return;
 
-        int num = service.delete(usrId);
-        if(num == 1)
-        {
-            out.println("정상적으로 탈퇴되었어!");
+            } else if (answer.equals("y") || answer.equals("Y")) {
+                int num = service.delete(usrId);
+                if (num == 1) {
+                    out.println("정상적으로 탈퇴되었어!");
+                    return;
+                }
+
+            } else {
+                out.println("y/n 으로만 대답해줘!");
+            }
+
         }
     }
 
@@ -210,8 +203,7 @@ public class FitnessUI {
 
         /* 아무도 없다면? */
         List<FitnessVO> list = service.findAll();
-        if(list.isEmpty())
-        {
+        if(list.isEmpty()) {
             out.println("우선 가입부터 하자!");
             return;
         }
@@ -222,8 +214,7 @@ public class FitnessUI {
 
         /* 아이디유무 체크 */
         FitnessVO fitness = service.findById(usrId);
-        if(fitness == null)
-        {
+        if(fitness == null) {
             out.println("존재하지 않는 회원이야!");
             return;
         }
@@ -243,7 +234,6 @@ public class FitnessUI {
 
         out.println(fitness);
         out.println("\t\t[ 회원수정 완료! ]\n");
-
     }
 
 }

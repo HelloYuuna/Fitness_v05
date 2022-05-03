@@ -104,7 +104,7 @@ public class FitnessVO implements Serializable, Comparable<FitnessVO> {
 
     @Override
     public String toString() {
-        return String.format("이름:%s 아이디:%s 키:%.2f 몸무게:%.2f bmi:%.2f (%3s)", usrName, usrId, height, weight, bmi, result);
+        return String.format("%s(%s): %6.2fcm %6.2fkg bmi:%6.2f (%s)", usrName, usrId, height, weight, bmi, result);
 //		return "이름: " + usrName + "아이디:" + usrId + " 키:" + height + " 몸무게:" + weight + " BMI:" + bmi + " " + result;
     }
 
