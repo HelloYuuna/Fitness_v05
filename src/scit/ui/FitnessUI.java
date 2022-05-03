@@ -32,7 +32,7 @@ public class FitnessUI {
 
         while(true){
             menu();
-            select = sc.next();
+            select = sc.nextLine();
             switch(select){
                 case "1": input(); break;
                 case "2": output(); break;
@@ -79,7 +79,7 @@ public class FitnessUI {
         while(true)
         {
             out.print("회원 아아디: ");
-            usrId = sc.next();
+            usrId = sc.nextLine();
 
             /* 중복 usrId CHECK */
             FitnessVO fitness = service.findById(usrId);
@@ -90,13 +90,14 @@ public class FitnessUI {
 
             } else {
                 out.print("회원 이름: ");
-                usrName = sc.next();
+                usrName = sc.nextLine();
 
                 out.print("키: ");
                 height = sc.nextDouble();
 
                 out.print("몸무게: ");
                 weight = sc.nextDouble();
+                sc.nextLine();
 
                 fitness = new FitnessVO(usrId, usrName, height, weight);
                 service.register(fitness);
@@ -138,11 +139,11 @@ public class FitnessUI {
 
         while(true) {
             out.print("찾는 회원의 아이디가 뭐야? >");
-            usrId = sc.next();
+            usrId = sc.nextLine();
 
             FitnessVO fitness = service.findById(usrId);
             if(fitness == null) {
-                out.println("존재하지 않는 회원이야!");
+                out.println("존재하지 않는 회원이야! 다시 입력해줘!");
                 continue;
             }
 
@@ -164,19 +165,19 @@ public class FitnessUI {
             return;
         }
 
-        out.print("탈퇴할 회원의 아이디가 뭐야? >");
-        usrId = sc.next();
-
-        FitnessVO fitness = service.findById(usrId);
-        if (fitness == null) {
-            out.println("존재하지 않는 회원이야!");
-            return;
-        }
-
         while(true) {
+            out.print("탈퇴할 회원의 아이디가 뭐야? >");
+            usrId = sc.nextLine();
+
+            FitnessVO fitness = service.findById(usrId);
+            if (fitness == null) {
+                out.println("존재하지 않는 회원이야! 다시 입력해줘!");
+                continue;
+            }
+
             out.println("\n" + fitness);
             out.print("이 회원 정말 탈퇴해?(y/n) >");
-            String answer = sc.next();
+            String answer = sc.nextLine();
 
             if (answer.equals("n") || answer.equals("N")) {
                 out.println("탈퇴 취소할께!");
@@ -184,13 +185,14 @@ public class FitnessUI {
 
             } else if (answer.equals("y") || answer.equals("Y")) {
                 int num = service.delete(usrId);
+
                 if (num == 1) {
                     out.println("정상적으로 탈퇴되었어!");
                     return;
                 }
 
             } else {
-                out.println("y/n 으로만 대답해줘!");
+                out.println("y/n로 대답해줘!");
             }
 
         }
@@ -210,12 +212,13 @@ public class FitnessUI {
 
         /* 회원 조회 */
         out.print("수정할 회원의 아이디가 뭐야? >");
-        usrId = sc.next();
+        usrId = sc.nextLine();
 
         /* 아이디유무 체크 */
         FitnessVO fitness = service.findById(usrId);
         if(fitness == null) {
             out.println("존재하지 않는 회원이야!");
+            sc.nextLine();
             return;
         }
 
