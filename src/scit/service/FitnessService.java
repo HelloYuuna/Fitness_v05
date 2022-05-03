@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface FitnessService {
 
-    public int regist(FitnessVO vo);
+    public int register(FitnessVO vo);
 
     public FitnessVO findById(String usrId);
 
